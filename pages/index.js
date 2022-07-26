@@ -10,7 +10,8 @@ import
   useDisclosure,
   Button,
   chakra,
-  Box
+  Box,
+  Image
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import useSWRImmutable from 'swr/immutable'
@@ -121,7 +122,7 @@ export default function Home()
     selectedLetters.push(letter)
     if (!data[0].word.includes(letter))
     {
-      if (wrong >= 5)
+      if (wrong >= 7)
       {
         setIsLose(true)
       }
@@ -161,7 +162,6 @@ export default function Home()
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>You win!!!</ModalHeader>
-            <ModalCloseButton />
             <ModalBody>
               That word is <chakra.span fontSize='18px' fontWeight='bold'>"{data[0].word}"</chakra.span> and you used {count} letters
             </ModalBody>
@@ -180,7 +180,6 @@ export default function Home()
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>You Lose!!!</ModalHeader>
-            <ModalCloseButton />
             <ModalBody>
               That word is <chakra.span fontSize='18px' fontWeight='bold'>"{data[0].word}"</chakra.span> and you used {count} letters
             </ModalBody>
@@ -203,9 +202,7 @@ export default function Home()
               </Heading>
             </Box>
             <Box>
-              <Heading fontSize={'120px'} padding={'48px 36px 0px 36px'}>
-                {wrong}
-              </Heading>
+              <Image src={`/assets/image/${wrong}.png`} marginTop={'32px'}/>
             </Box>
             <Box>
               {showWord()}
