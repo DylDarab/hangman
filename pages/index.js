@@ -37,7 +37,6 @@ export default function Home()
   const { data, mutate, error } = useSWRImmutable('https://random-words-api.vercel.app/word', async (url) =>
   {
     const res = await axios.get(url)
-    console.log(res.data)
     res.data[0].word = res.data[0].word.toLowerCase()
     return res.data
   })
