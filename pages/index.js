@@ -32,6 +32,13 @@ export default function Home()
     paddingTop: '36px'
   }
 
+  const verticallyCenter = {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { data, mutate, error } = useSWRImmutable('https://random-words-api.vercel.app/word', async (url) =>
@@ -114,7 +121,7 @@ export default function Home()
     selectedLetters.push(letter)
     if (!data[0].word.includes(letter))
     {
-      if (wrong >= 7)
+      if (wrong >= 5)
       {
         setIsLose(true)
       }
@@ -139,7 +146,12 @@ export default function Home()
 
   if (!data)
   {
-    return <div>loading...</div>
+    return (
+    <Container height={'100vh'}>
+      <Text sx={verticallyCenter} fontSize='28px'>
+        loading...
+      </Text>
+    </Container>)
   }
 
   else
